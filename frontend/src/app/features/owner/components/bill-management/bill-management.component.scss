@@ -1,0 +1,320 @@
+.bill-management-container {
+  padding: 1.5rem;
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    
+    .page-title {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      
+      i {
+        color: #3b82f6;
+      }
+    }
+  }
+  
+  // Table Styles
+  .room-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    
+    strong {
+      color: #212529;
+    }
+    
+    small {
+      color: #6c757d;
+      font-size: 0.875rem;
+    }
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .text-center {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+  }
+}
+
+// Bill Detail Dialog
+.bill-detail-content {
+  .detail-section {
+    margin-bottom: 2rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      margin: 0 0 1rem 0;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      i {
+        color: #3b82f6;
+      }
+    }
+    
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      
+      .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        
+        label {
+          font-weight: 600;
+          color: #6c757d;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+        }
+        
+        span {
+          color: #212529;
+          font-size: 1rem;
+          
+          &.amount {
+            font-weight: 600;
+            color: #10b981;
+            font-size: 1.125rem;
+          }
+        }
+      }
+    }
+  }
+  
+  // Payment Management Section
+  .payment-management-section {
+    border-top: 1px solid #dee2e6;
+    padding-top: 1.5rem;
+    
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .payments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      
+      .payment-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: #e9ecef;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .payment-info {
+          flex: 1;
+          
+          .payment-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            
+            .tenant-name {
+              font-weight: 600;
+              color: #212529;
+            }
+            
+            .payment-amount {
+              font-weight: 600;
+              color: #10b981;
+              margin-left: auto;
+              font-size: 1.125rem;
+            }
+          }
+          
+          .payment-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            
+            small {
+              color: #6c757d;
+              font-size: 0.875rem;
+              display: flex;
+              align-items: center;
+              gap: 0.375rem;
+              
+              i {
+                font-size: 0.75rem;
+              }
+              
+              &.payment-date {
+                color: #495057;
+              }
+              
+              &.payment-note {
+                color: #6c757d;
+                font-style: italic;
+              }
+            }
+          }
+        }
+        
+        .payment-actions {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    
+    .no-payments {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      color: #6c757d;
+      
+      i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+      }
+      
+      p {
+        margin: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Add Payment Dialog
+.add-payment-dialog {
+  .form-field {
+    margin-bottom: 1.5rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .field-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #495057;
+      font-size: 0.875rem;
+      
+      &.required::after {
+        content: ' *';
+        color: #ef4444;
+      }
+    }
+    
+    .p-error {
+      display: block;
+      margin-top: 0.25rem;
+      color: #ef4444;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Payment Method Badge Colors
+::ng-deep {
+  .p-tag {
+    &.p-tag-success {
+      background-color: #10b981;
+    }
+    
+    &.p-tag-info {
+      background-color: #3b82f6;
+    }
+    
+    &.p-tag-warning {
+      background-color: #f59e0b;
+    }
+    
+    &.p-tag-primary {
+      background-color: #6366f1;
+    }
+    
+    &.p-tag-danger {
+      background-color: #ef4444;
+    }
+  }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .bill-management-container {
+    padding: 1rem;
+    
+    .page-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      
+      .page-title {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  
+  .bill-detail-content {
+    .detail-section {
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .payment-management-section {
+      .payments-list {
+        .payment-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+          
+          .payment-info {
+            width: 100%;
+            
+            .payment-header {
+              flex-wrap: wrap;
+            }
+          }
+          
+          .payment-actions {
+            width: 100%;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "boarding-house-backend",
+  "version": "1.0.0",
+  "description": "Backend for boarding house management system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "boarding-house",
+    "bill-management",
+    "payment"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "sequelize": "^6.35.2",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0"
+  }
+}

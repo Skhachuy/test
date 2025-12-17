@@ -1,0 +1,72 @@
+.bill-form-dialog {
+  .form-field {
+    margin-bottom: 1.5rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    .field-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #495057;
+      font-size: 0.875rem;
+      
+      &.required::after {
+        content: ' *';
+        color: #ef4444;
+      }
+    }
+    
+    .field-hint {
+      display: block;
+      margin-top: 0.25rem;
+      color: #6c757d;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+    
+    .p-error {
+      display: block;
+      margin-top: 0.25rem;
+      color: #ef4444;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Override PrimeNG styles
+::ng-deep {
+  .bill-form-dialog {
+    .p-dialog-content {
+      padding: 1.5rem;
+    }
+    
+    .p-dropdown,
+    .p-inputtext,
+    .p-inputnumber,
+    .p-calendar {
+      width: 100%;
+    }
+    
+    .p-dropdown-panel {
+      .p-dropdown-item {
+        padding: 0.75rem 1rem;
+        
+        &:hover {
+          background-color: #f3f4f6;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .bill-form-dialog {
+    .form-field {
+      margin-bottom: 1.25rem;
+    }
+  }
+}

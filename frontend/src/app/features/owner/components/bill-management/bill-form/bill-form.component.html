@@ -1,0 +1,118 @@
+<!-- Bill Form Dialog -->
+<p-dialog
+  [header]="bill ? 'Sửa hóa đơn' : 'Tạo hóa đơn mới'"
+  [(visible)]="visible"
+  (visibleChange)="visibleChange.emit($event)"
+  [modal]="true"
+  [style]="{ width: '600px' }"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="bill-form-dialog"
+>
+  <form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+    <!-- Room Selection -->
+    <div class="form-field">
+      <label class="field-label required">Phòng</label>
+      <p-dropdown
+        formControlName="roomId"
+        [options]="roomOptions"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Chọn phòng"
+        [filter]="true"
+        filterBy="label"
+        [showClear]="true"
+        [loading]="loading"
+        [style]="{ width: '100%' }"
+      >
+        <ng-template pTemplate="selectedItem" let-option>
+          <div *ngIf="option">{{ option.label }}</div>
+        </ng-template>
+        <ng-template pTemplate="item" let-option>
+          <div>{{ option.label }}</div>
+        </ng-template>
+      </p-dropdown>
+      <small class="p-error" *ngIf="billForm.get('roomId')?.invalid && billForm.get('roomId')?.touched">
+        {{ getErrorMessage('roomId') }}
+      </small>
+    </div>
+
+    <!-- Period -->
+    <div class="form-field">
+      <label class="field-label required">Kỳ hóa đơn</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="period"
+        placeholder="Ví dụ: 2024-01"
+        [style]="{ width: '100%' }"
+      />
+      <small class="field-hint">Định dạng: YYYY-MM (Ví dụ: 2024-01)</small>
+      <small class="p-error" *ngIf="billForm.get('period')?.invalid && billForm.get('period')?.touched">
+        {{ getErrorMessage('period') }}
+      </small>
+    </div>
+
+    <!-- Total Amount -->
+    <div class="form-field">
+      <label class="field-label required">Tổng tiền</label>
+      <p-inputNumber
+        formControlName="totalAmount"
+        mode="currency"
+        currency="VND"
+        locale="vi-VN"
+        [style]="{ width: '100%' }"
+      ></p-inputNumber>
+      <small class="p-error" *ngIf="billForm.get('totalAmount')?.invalid && billForm.get('totalAmount')?.touched">
+        {{ getErrorMessage('totalAmount') }}
+      </small>
+    </div>
+
+    <!-- Status -->
+    <div class="form-field">
+      <label class="field-label required">Trạng thái</label>
+      <p-dropdown
+        formControlName="status"
+        [options]="[
+          { label: 'Chưa thanh toán', value: 'unpaid' },
+          { label: 'Thanh toán một phần', value: 'partial' },
+          { label: 'Đã thanh toán', value: 'paid' }
+        ]"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Chọn trạng thái"
+        [style]="{ width: '100%' }"
+      ></p-dropdown>
+      <small class="p-error" *ngIf="billForm.get('status')?.invalid && billForm.get('status')?.touched">
+        {{ getErrorMessage('status') }}
+      </small>
+    </div>
+
+    <!-- Due Date -->
+    <div class="form-field">
+      <label class="field-label">Hạn thanh toán</label>
+      <p-calendar
+        formControlName="dueDate"
+        [showIcon]="true"
+        dateFormat="dd/mm/yy"
+        placeholder="Chọn ngày"
+        [style]="{ width: '100%' }"
+      ></p-calendar>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Hủy"
+      severity="secondary"
+      [text]="true"
+      (onClick)="closeDialog()"
+    ></p-button>
+    <p-button
+      [label]="bill ? 'Cập nhật' : 'Tạo mới'"
+      [loading]="submitting"
+      [disabled]="billForm.invalid"
+      (onClick)="onSubmit()"
+    ></p-button>
+  </ng-template>
+</p-dialog>
